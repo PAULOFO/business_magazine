@@ -1,6 +1,9 @@
+import 'package:businessmagazine/models/address.dart';
+import 'package:businessmagazine/repositories/api_error.dart';
+import 'package:businessmagazine/repositories/api_response.dart';
 import 'package:dio/dio.dart';
 
-getAddressFromAPI(String postalCode) async {
+Future<ApiResponse> getAddressFromAPI(String postalCode) async {
 
   final String endpoint =  ///URL PARA BUSCAR OS DADOS
       'http://viacep.com.br/ws/${postalCode.replaceAll('.', '').replaceAll('-','')}/json/';
@@ -10,13 +13,31 @@ getAddressFromAPI(String postalCode) async {
     final Response response = await Dio().get<Map>(endpoint);
 
     if(response.data.containsKey('erro') && response.data['erro']){
-
+      return ApiResponse.error(
+        error: ApiError(
+          code: -1,
+          message: 'CEP Inválido'
+        )
+      );
     }
 
+    final Address address = Address(
+      place: response.data['logradouro'],
+      district: response.data['bairro'],
+      city: response.data['localidade'],
+      postalCode: response.data['cep'],
+      federativeUnit: response.data['uf'],
+    );
+
+    print(address);
 
     print(response.data);
   } on DioError catch (e) {
-    print(e.message);
+    return ApiResponse.error(
+      error: ApiError(
+        code: -1,
+        message: 'Falha ao contactar VIACEP'
+      )
+    );
   }
-
 }
