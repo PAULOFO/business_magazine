@@ -1,4 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:businessmagazine/api/api_postalcode.dart';
 import 'package:businessmagazine/common/custom_drawer/custom_drawer.dart';
 import 'package:businessmagazine/screens/create/widgets/images_field.dart';
 import 'package:flutter/material.dart';
@@ -113,6 +114,9 @@ class _CreateScreenState extends State<CreateScreen> {
                   ),
                 ),
                 onPressed: (){
+                  getAddressFromAPI('13.000-000');
+                  
+        
                   if(_formKey.currentState.validate()){
                     _formKey.currentState.save();
                   }
