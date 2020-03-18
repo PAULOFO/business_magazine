@@ -2,6 +2,7 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:businessmagazine/api/api_postalcode.dart';
 import 'package:businessmagazine/common/custom_drawer/cep_field.dart';
 import 'package:businessmagazine/common/custom_drawer/custom_drawer.dart';
+import 'package:businessmagazine/models/ad.dart';
 import 'package:businessmagazine/screens/create/widgets/hide_phone_widget.dart';
 import 'package:businessmagazine/screens/create/widgets/images_field.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ class _CreateScreenState extends State<CreateScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  Ad ad = Ad();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +32,8 @@ class _CreateScreenState extends State<CreateScreen> {
         child: ListView(
           children: <Widget>[
             ImagesField(
-              onSaved: (images){
-
+              onSaved: (images){ ///IMAGENS
+                ad.images = images;
               },
               initialValue: [],
             ),
@@ -48,8 +51,8 @@ class _CreateScreenState extends State<CreateScreen> {
                 if (text.isEmpty) return 'Campo Obrigatório';
                 return null;
               },
-              onSaved: (t) {
-
+              onSaved: (t) { ///TÍTULO
+                ad.title = t;
               },
             ),
             TextFormField(
@@ -69,8 +72,8 @@ class _CreateScreenState extends State<CreateScreen> {
                   return 'Descrição muito curta';
                 return null;
               },
-              onSaved: (d) {
-
+              onSaved: (d) { ///DESCRIÇÃO
+                ad.description = d;
               },
             ),
             CepField(
@@ -83,8 +86,8 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
                 contentPadding: const EdgeInsets.fromLTRB(16, 10, 12, 10),
                ),
-                onSaved: (a) {
-                  print(a);
+                onSaved: (a) { ///CEP ENDEREÇO
+                  ad.address = a;
                 },
               ),
             TextFormField(
@@ -112,13 +115,13 @@ class _CreateScreenState extends State<CreateScreen> {
                   return 'Utilize valores válidos';
                 return null;
               },
-              onSaved: (price) {
-
+              onSaved: (p) { ///PREÇO
+                ad.price = int.parse(getSanitizedText(p)) / 100;
               },
             ),
             HidePhoneWidget(
               onSaved: (h){
-
+                ad.hidePhone = h;
               },
               initialValue: false,
             ),
@@ -137,6 +140,8 @@ class _CreateScreenState extends State<CreateScreen> {
                 onPressed: (){
                   if(_formKey.currentState.validate()){
                     _formKey.currentState.save();
+
+                    print(ad);
                   }
                 },
               ),
