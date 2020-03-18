@@ -2,6 +2,7 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:businessmagazine/api/api_postalcode.dart';
 import 'package:businessmagazine/common/custom_drawer/cep_field.dart';
 import 'package:businessmagazine/common/custom_drawer/custom_drawer.dart';
+import 'package:businessmagazine/screens/create/widgets/hide_phone_widget.dart';
 import 'package:businessmagazine/screens/create/widgets/images_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -107,7 +108,7 @@ class _CreateScreenState extends State<CreateScreen> {
               validator: (text) {
                 if (text.isEmpty) return 'Campo Obrigatório';
                 //if (text.trim().isEmpty) return 'Campo Obrigatório';
-                if (double.tryParse(text) == null)
+                if (int.tryParse(getSanitizedText(text)) == null)
                   return 'Utilize valores válidos';
                 return null;
               },
@@ -115,7 +116,12 @@ class _CreateScreenState extends State<CreateScreen> {
 
               },
             ),
+            HidePhoneWidget(
+              onSaved: (h){
 
+              },
+              initialValue: false,
+            ),
             Container(
               height: 50,
               child: RaisedButton(
@@ -139,5 +145,8 @@ class _CreateScreenState extends State<CreateScreen> {
         ),
       ),
     );
+  }
+  String getSanitizedText(String text) {
+    return text.replaceAll(RegExp(r'[^\d]'), '');
   }
 }
