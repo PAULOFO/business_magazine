@@ -1,5 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:businessmagazine/api/api_postalcode.dart';
+import 'package:businessmagazine/common/custom_drawer/cep_field.dart';
 import 'package:businessmagazine/common/custom_drawer/custom_drawer.dart';
 import 'package:businessmagazine/screens/create/widgets/images_field.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +72,20 @@ class _CreateScreenState extends State<CreateScreen> {
 
               },
             ),
+            CepField(
+              decoration: InputDecoration(
+                labelText: 'CEP*',
+                labelStyle: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  color: Colors.grey,
+                  fontSize: 18,
+                ),
+                contentPadding: const EdgeInsets.fromLTRB(16, 10, 12, 10),
+               ),
+                onSaved: (a) {
+
+                },
+              ),
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'Preço *',
