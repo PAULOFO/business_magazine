@@ -15,46 +15,55 @@ class CepBlocState {
 
 }
 
-class CapBloc {
+class CepBloc {
+
+  CepBloc() {
+    onChanged("");///VALOR VAZIO DO CEP
+  }
 
   final BehaviorSubject<CepBlocState> _cepController = BehaviorSubject<CepBlocState>();
+  Stream<CepBlocState> get outCep => _cepController.stream;
 
   void searchCep(String cep) async {
     final ApiResponse apiResponse = await getAddressFromAPI(cep);
 
-    if(apiResponse.sucess){
+    if (apiResponse.success) {
       _cepController.add(
-        CepBlocState(
-          cepFieldState: CepFieldState.VALID,
-          cep: cep,
-          address: apiResponse.result,
-        )
+          CepBlocState(
+            cepFieldState: CepFieldState.VALID,
+            cep: cep,
+            address: apiResponse.result,
+          )
       );
     } else {
       _cepController.add(
-        CepBlocState(
-          cepFieldState: CepFieldState.INVALID,
-          cep: cep
-        )
+          CepBlocState(
+              cepFieldState: CepFieldState.INVALID,
+              cep: cep
+          )
       );
     }
   }
 
-  void onChanged(String cep){
-    cep = cep.trim().replaceAll('-','').replaceAll('-','');///trim REMOVE OS ESPAÇOS EM BRANCO
-    if(cep.isEmpty || cep.length < 8){///SE CEP ESTIVER OU TAMANHO FOR MENOR Q 8, ESTÁ INCOMPLETO
+  void onChanged(String cep) {
+    cep = cep.trim().replaceAll('-', '').replaceAll('-', '');
+
+    ///trim REMOVE OS ESPAÇOS EM BRANCO
+    if (cep.isEmpty || cep.length < 8) {
+      ///SE CEP ESTIVER OU TAMANHO FOR MENOR Q 8, ESTÁ INCOMPLETO
       _cepController.add(
-        CepBlocState(
-          cepFieldState: CepFieldState.INCOMPLETE,
-          cep: cep
-        )
+          CepBlocState(
+              cepFieldState: CepFieldState.INCOMPLETE,
+              cep: cep
+          )
       );
     } else {
       searchCep(cep);
     }
-
-    void dispose(){
-      _cepController.close();
-    }
   }
+
+  void dispose() {
+    _cepController.close();
+  }
+
 }

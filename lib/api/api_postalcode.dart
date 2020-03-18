@@ -29,7 +29,7 @@ Future<ApiResponse> getAddressFromAPI(String postalCode) async {
       federativeUnit: response.data['uf'],
     );
 
-    return ApiResponse.sucess(result: address);
+    return ApiResponse.success(result: address);
   } on DioError catch (e) {
     return ApiResponse.error(
       error: ApiError(

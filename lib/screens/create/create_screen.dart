@@ -83,7 +83,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 contentPadding: const EdgeInsets.fromLTRB(16, 10, 12, 10),
                ),
                 onSaved: (a) {
-
+                  print(a);
                 },
               ),
             TextFormField(
@@ -129,9 +129,6 @@ class _CreateScreenState extends State<CreateScreen> {
                   ),
                 ),
                 onPressed: (){
-                  getAddressFromAPI('83.410-340');
-                  
-        
                   if(_formKey.currentState.validate()){
                     _formKey.currentState.save();
                   }
