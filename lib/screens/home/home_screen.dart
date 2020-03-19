@@ -1,6 +1,7 @@
 import 'package:businessmagazine/blocs/home_bloc.dart';
 import 'package:businessmagazine/common/custom_drawer/custom_drawer.dart';
 import 'package:businessmagazine/models/ad.dart';
+import 'package:businessmagazine/screens/home/widgets/product_tile.dart';
 import 'package:businessmagazine/screens/home/widgets/search_dialog.dart';
 import 'package:businessmagazine/screens/home/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
@@ -95,9 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index){
-                    return ListTile(
-                      title: Text(snapshot.data[index].title),
-                    );
+                    return ProductTile(snapshot.data[index]);
                   },
                 );
               },
