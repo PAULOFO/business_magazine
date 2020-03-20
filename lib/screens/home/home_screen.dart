@@ -93,6 +93,11 @@ class _HomeScreenState extends State<HomeScreen> {
             child: StreamBuilder<List<Ad>>(
               stream: _homeBloc.outAd,
               builder: (context, snapshot){
+                if(snapshot.data == null)
+                  return Container();
+
+                //if(snapshot.connectionState != ConnectionState.active)
+                  //return Container();
                 return ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index){

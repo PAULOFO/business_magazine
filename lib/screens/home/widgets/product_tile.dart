@@ -1,4 +1,5 @@
 import 'package:businessmagazine/models/ad.dart';
+import 'package:businessmagazine/screens/product/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -12,7 +13,8 @@ class ProductTile extends StatelessWidget {
     return InkWell(
       splashColor: Colors.blue,
       onTap: () {
-
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => ProductScreen(ad)));
       },
       child: Container(
         height: 135,
