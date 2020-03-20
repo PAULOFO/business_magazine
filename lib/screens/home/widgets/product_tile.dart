@@ -1,3 +1,4 @@
+import 'package:businessmagazine/helpers/format_field.dart';
 import 'package:businessmagazine/models/ad.dart';
 import 'package:businessmagazine/screens/product/product_screen.dart';
 import 'package:flutter/material.dart';
@@ -64,10 +65,5 @@ class ProductTile extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String numToString(num number) {
-    return NumberFormat('###,##0.00', 'pt-br').///SOMENTE PARA PT-BR
-    format(double.parse(number.toStringAsFixed(2)));
   }
 }

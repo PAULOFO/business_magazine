@@ -1,4 +1,5 @@
 import 'package:businessmagazine/models/ad.dart';
+import 'package:businessmagazine/screens/product/widgets/main_panel.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,21 @@ class ProductScreen extends StatelessWidget {
               dotBgColor: Colors.transparent,///Cor por trás das bolinhas
               dotColor: Colors.pink,///Cor da bolinhas
               autoplay: false,///true->Faz o Carousel se mover automaticamente
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                MainPanel(ad),
+//                Divider(),
+//                DescriptionPanel(ad),
+//                Divider(),
+//                LocationPanel(ad),
+//                Divider(),
+//                UserPanel(ad),
+              ],
             ),
           ),
         ],

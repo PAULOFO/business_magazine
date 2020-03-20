@@ -2,6 +2,7 @@ import 'package:businessmagazine/blocs/drawer_bloc.dart';
 import 'package:businessmagazine/blocs/home_bloc.dart';
 import 'package:businessmagazine/screens/base/base_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -26,13 +27,20 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'MAGAZINE COMERCIAL',
+        title: 'BUZINESS MAGAZINE',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
           //primaryColor: Color(0xFF692CD5),
         ),
-          home: BaseScreen(),
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+          Locale('pt', 'BR')
+        ],
+        home: BaseScreen(),
       ),
     );
   }
