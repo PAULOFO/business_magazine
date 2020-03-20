@@ -1,4 +1,5 @@
 import 'package:businessmagazine/models/ad.dart';
+import 'package:businessmagazine/screens/product/widgets/description_panel.dart';
 import 'package:businessmagazine/screens/product/widgets/main_panel.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
@@ -37,9 +38,9 @@ class ProductScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 MainPanel(ad),
-//                Divider(),
-//                DescriptionPanel(ad),
-//                Divider(),
+                Divider(),
+                DescriptionPanel(ad),
+                Divider(),
 //                LocationPanel(ad),
 //                Divider(),
 //                UserPanel(ad),
