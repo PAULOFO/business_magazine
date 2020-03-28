@@ -1,6 +1,8 @@
 import 'package:businessmagazine/models/ad.dart';
 import 'package:businessmagazine/screens/product/widgets/description_panel.dart';
+import 'package:businessmagazine/screens/product/widgets/location_panel.dart';
 import 'package:businessmagazine/screens/product/widgets/main_panel.dart';
+import 'package:businessmagazine/screens/product/widgets/user_panel.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 
@@ -41,9 +43,10 @@ class ProductScreen extends StatelessWidget {
                 Divider(),
                 DescriptionPanel(ad),
                 Divider(),
-//                LocationPanel(ad),
-//                Divider(),
-//                UserPanel(ad),
+                LocationPanel(ad),
+                Divider(),
+                UserPanel(ad),
+                const SizedBox(height: 32,),
               ],
             ),
           ),
