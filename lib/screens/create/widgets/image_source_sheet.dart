@@ -16,23 +16,64 @@ class ImageSourceSheet extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(32.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              FlatButton(
-                child: Text('Câmera'),
-                onPressed: () async {
-                  final File image =
-                    await ImagePicker.pickImage(source: ImageSource.camera);
-                  onImageSelected(image);
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FlatButton.icon(
+                      onPressed: ()async{
+                        final File image =
+                        await ImagePicker.pickImage(source: ImageSource.camera);
+                        onImageSelected(image);
+                      }, icon: Icon(Icons.camera_enhance, color: Colors.grey,),
+                         label: Text(
+                             'Foto',
+                           style: TextStyle(
+                             color: Colors.grey,
+                           ),
+                         ),
+                  ),
+                ],
               ),
-              FlatButton(
-                child: Text('Galeria'),
-                onPressed: () async {
-                  final File image =
-                    await ImagePicker.pickImage(source: ImageSource.gallery);
-                  onImageSelected(image);
-                },
+              Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FlatButton.icon(
+                      onPressed: () async {
+                        final File image =
+                        await ImagePicker.pickVideo(source: ImageSource.camera);
+                        onImageSelected(image);
+                      }, icon: Icon(Icons.videocam, color: Colors.grey,),
+                         label: Text(
+                             'Vídeo',
+                           style: TextStyle(
+                             color: Colors.grey,
+                           ),
+                         ),
+                  ),
+                ],
+              ),
+              Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FlatButton.icon(
+                    onPressed: () async {
+                      final File image =
+                      await ImagePicker.pickImage(source: ImageSource.gallery);
+                      onImageSelected(image);
+                    }, icon: Icon(Icons.image, color: Colors.grey,),
+                    label: Text(
+                      'Galeria',
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
