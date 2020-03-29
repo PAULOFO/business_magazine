@@ -1,5 +1,5 @@
 import 'package:businessmagazine/common/custom_drawer/custom_drawer.dart';
-import 'package:businessmagazine/screens/account/edit_account.dart';
+import 'package:businessmagazine/screens/editaccount/edit_account.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatelessWidget {

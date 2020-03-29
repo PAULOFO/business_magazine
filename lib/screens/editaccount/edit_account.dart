@@ -1,4 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:businessmagazine/models/user.dart';
+import 'package:businessmagazine/screens/account/widgets/user_type_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +10,9 @@ class EditAccountScreen extends StatefulWidget {
 }
 
 class _EditAccountScreenState extends State<EditAccountScreen> {
+
+  final User _user = User(name: 'Paulo Oliveira', phone: '99900-2204');
+
   @override
   Widget build(BuildContext context) {
     InputDecoration _buildDecoration(String label) {
@@ -25,7 +30,14 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
       body: ListView(
           padding: const EdgeInsets.all(16),
           children: <Widget>[
+            UserTypeWidget(
+              initialValue: _user.userType,
+              onSaved: (userType){
+
+              },
+            ),
             TextFormField(
+              initialValue: _user.name,//Mostra o nome atual
               decoration: _buildDecoration('Nome*'),
               validator: (name) {
                 if (name.length < 7)
@@ -37,6 +49,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
               },
             ),
             TextFormField(
+              initialValue: _user.phone,//Mostra o tel atual
               decoration: _buildDecoration('Telefone*'),
               keyboardType: TextInputType.phone,
               inputFormatters: [
